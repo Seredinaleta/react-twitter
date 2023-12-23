@@ -43,13 +43,12 @@ export default function Container({
     }
   };
 
-  const convertData = ({ value }) => {
+  const convertData = ({ value }) =>
     JSON.stringify({
       text: value,
       username: "user",
       postId: id,
     });
-  };
 
   return (
     <Grid>
@@ -58,6 +57,10 @@ export default function Container({
         button={button}
         onSubmit={handleSubmit}
       />
+      {status === LOAD_STATUS.ERROR && (
+        <Alert status={status} message={message} />
+      )}
+      {status === LOAD_STATUS.PROGRESS && <Loader />}
     </Grid>
   );
 }
